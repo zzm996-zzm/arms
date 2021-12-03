@@ -1,8 +1,13 @@
 package main
 
 import (
+	"context"
+	"log"
 	"net/http"
+	"os"
+	"os/signal"
 	"simple/framework"
+	"syscall"
 )
 
 func main() {
@@ -14,5 +19,21 @@ func main() {
 		// 请求监听地址
 		Addr: ":8080",
 	}
-	server.ListenAndServe()
+
+	go func() {
+		server.ListenAndServe()
+	}()
+
+	//当前goroutine 等待的信号量
+	quit := make(chan os.Signal)
+
+	// 监控信号：SIGINT, SIGTERM, SIGQUIT
+	signal.Notify(quit, syscall.SIGINT, syscall.SIGTERM, syscall.SIGQUIT)
+
+	<-quit
+
+	//触发这些信号则关闭
+	if err := server.Shutdown(context.Background()); err != nil {
+		log.Fatal("Server Shutdown:", err)
+	}
 }

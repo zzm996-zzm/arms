@@ -10,17 +10,19 @@ type Tree struct {
 }
 
 type node struct {
-	isLast  bool
-	segment string
-	handler ControllerHandler
-	childs  []*node
+	isLast   bool
+	segment  string
+	handlers []ControllerHandler // 中间件+控制器 ...
+	parent   *node               //追溯链路的父节点
+	childs   []*node
 }
 
 func newNode() *node {
 	return &node{
-		isLast:  false,
-		segment: "",
-		childs:  []*node{},
+		isLast:   false,
+		segment:  "",
+		childs:   []*node{},
+		handlers: make([]ControllerHandler, 0),
 	}
 }
 
@@ -99,8 +101,32 @@ func (n *node) matchNode(uri string) *node {
 	return nil
 }
 
-// 增加路由节点
-func (tree *Tree) AddRouter(uri string, handler ControllerHandler) error {
+func (n *node) parseParamsFromEndNode(uri string) map[string]string {
+	ret := map[string]string{}
+	segments := strings.Split(uri, "/")
+	cnt := len(segments)
+	cur := n
+
+	for i := cnt - 1; i >= 0; i-- {
+		if cur.segment == "" {
+			break
+		}
+		//如果是通配符节点
+		if isWildSegment(cur.segment) {
+			ret[cur.segment[1:]] = segments[i]
+		}
+		cur = cur.parent
+	}
+
+	return ret
+}
+
+/**
+增加路由节点
+首先判断路由是否冲突
+然后判断链路上是否有重复，每次只插入不重复的那个
+**/
+func (tree *Tree) AddRouter(uri string, handler ...ControllerHandler) error {
 	n := tree.root
 	// 确认路由是否冲突
 	if n.matchNode(uri) != nil {
@@ -137,8 +163,11 @@ func (tree *Tree) AddRouter(uri string, handler ControllerHandler) error {
 			cnode.segment = segment
 			if isLast {
 				cnode.isLast = true
-				cnode.handler = handler
+				cnode.handlers = append(cnode.handlers, handler...)
 			}
+
+			//父节点修改
+			cnode.parent = n
 			n.childs = append(n.childs, cnode)
 			objNode = cnode
 		}
@@ -151,24 +180,11 @@ func (tree *Tree) AddRouter(uri string, handler ControllerHandler) error {
 }
 
 // 匹配uri
-func (tree *Tree) FindHandler(uri string) ControllerHandler {
+func (n *node) FindHandler(uri string) []ControllerHandler {
 	// 直接复用matchNode函数，uri是不带通配符的地址
-	matchNode := tree.root.matchNode(uri)
+	matchNode := n.matchNode(uri)
 	if matchNode == nil {
 		return nil
 	}
-	return matchNode.handler
+	return matchNode.handlers
 }
-
-// // 匹配uri
-// func (tree *Tree) PrintTree(root *node, level int) {
-
-// 	if root == nil {
-// 		fmt.Println("is null ?", root)
-// 		return
-// 	}
-// 	for i := 0; i < len(root.childs); i++ {
-// 		fmt.Printf("当前第%d层 segment= %s \n", level, root.segment)
-// 		tree.PrintTree(root.childs[i], level+1)
-// 	}
-// }
