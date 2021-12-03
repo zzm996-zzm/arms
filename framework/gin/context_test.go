@@ -23,8 +23,8 @@ import (
 	"time"
 
 	"github.com/arms/framework/gin/binding"
+	testdata "github.com/arms/framework/gin/testdata/protoexample"
 	"github.com/gin-contrib/sse"
-	testdata "github.com/gin-gonic/gin/testdata/protoexample"
 	"github.com/stretchr/testify/assert"
 	"google.golang.org/protobuf/proto"
 )

@@ -1,7 +1,7 @@
 package main
 
 import (
-	"simple/framework"
+	"github.com/arms/framework"
 )
 
 // 注册路由规则

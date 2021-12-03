@@ -1,7 +1,7 @@
 package middleware
 
 import (
-	"simple/framework"
+	"github.com/arms/framework"
 )
 
 func Recovery() framework.ControllerHandler {

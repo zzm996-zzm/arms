@@ -2,14 +2,14 @@
 
 <img align="right" width="159px" src="https://raw.githubusercontent.com/gin-gonic/logo/master/color.png">
 
-[![Build Status](https://github.com/gin-gonic/gin/workflows/Run%20Tests/badge.svg?branch=master)](https://github.com/gin-gonic/gin/actions?query=branch%3Amaster)
+[![Build Status](https://github.com/arms/framework/gin/workflows/Run%20Tests/badge.svg?branch=master)](https://github.com/arms/framework/gin/actions?query=branch%3Amaster)
 [![codecov](https://codecov.io/gh/gin-gonic/gin/branch/master/graph/badge.svg)](https://codecov.io/gh/gin-gonic/gin)
 [![Go Report Card](https://goreportcard.com/badge/github.com/gin-gonic/gin)](https://goreportcard.com/report/github.com/gin-gonic/gin)
 [![GoDoc](https://pkg.go.dev/badge/github.com/gin-gonic/gin?status.svg)](https://pkg.go.dev/github.com/gin-gonic/gin?tab=doc)
 [![Join the chat at https://gitter.im/gin-gonic/gin](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/gin-gonic/gin?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
-[![Sourcegraph](https://sourcegraph.com/github.com/gin-gonic/gin/-/badge.svg)](https://sourcegraph.com/github.com/gin-gonic/gin?badge)
+[![Sourcegraph](https://sourcegraph.com/github.com/arms/framework/gin/-/badge.svg)](https://sourcegraph.com/github.com/gin-gonic/gin?badge)
 [![Open Source Helpers](https://www.codetriage.com/gin-gonic/gin/badges/users.svg)](https://www.codetriage.com/gin-gonic/gin)
-[![Release](https://img.shields.io/github/release/gin-gonic/gin.svg?style=flat-square)](https://github.com/gin-gonic/gin/releases)
+[![Release](https://img.shields.io/github/release/gin-gonic/gin.svg?style=flat-square)](https://github.com/arms/framework/gin/releases)
 [![TODOs](https://badgen.net/https/api.tickgit.com/badgen/github.com/gin-gonic/gin)](https://www.tickgit.com/browse?repo=github.com/gin-gonic/gin)
 
 Gin is a web framework written in Go (Golang). It features a martini-like API with performance that is up to 40 times faster thanks to [httprouter](https://github.com/julienschmidt/httprouter). If you need performance and good productivity, you will love Gin.
@@ -205,7 +205,7 @@ Gin enables `MsgPack` rendering feature by default. But you can disable this fea
 $ go build -tags=nomsgpack .
 ```
 
-This is useful to reduce the binary size of executable files. See the [detail information](https://github.com/gin-gonic/gin/pull/1852).
+This is useful to reduce the binary size of executable files. See the [detail information](https://github.com/arms/framework/gin/pull/1852).
 
 ## API Examples
 
@@ -372,9 +372,9 @@ ids: map[b:hello a:1234]; names: map[second:tianou first:thinkerou]
 
 #### Single file
 
-References issue [#774](https://github.com/gin-gonic/gin/issues/774) and detail [example code](https://github.com/gin-gonic/examples/tree/master/upload-file/single).
+References issue [#774](https://github.com/arms/framework/gin/issues/774) and detail [example code](https://github.com/gin-gonic/examples/tree/master/upload-file/single).
 
-`file.Filename` **SHOULD NOT** be trusted. See [`Content-Disposition` on MDN](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Disposition#Directives) and [#1693](https://github.com/gin-gonic/gin/issues/1693)
+`file.Filename` **SHOULD NOT** be trusted. See [`Content-Disposition` on MDN](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Disposition#Directives) and [#1693](https://github.com/arms/framework/gin/issues/1693)
 
 > The filename is always optional and must not be used blindly by the application: path information should be stripped, and conversion to the server file system rules should be done.
 
@@ -840,7 +840,7 @@ See the [struct-lvl-validation example](https://github.com/gin-gonic/examples/tr
 
 ### Only Bind Query String
 
-`ShouldBindQuery` function only binds the query params and not the post data. See the [detail information](https://github.com/gin-gonic/gin/issues/742#issuecomment-315953017).
+`ShouldBindQuery` function only binds the query params and not the post data. See the [detail information](https://github.com/arms/framework/gin/issues/742#issuecomment-315953017).
 
 ```go
 package main
@@ -876,7 +876,7 @@ func startPage(c *gin.Context) {
 
 ### Bind Query String or Post Data
 
-See the [detail information](https://github.com/gin-gonic/gin/issues/742#issuecomment-264681292).
+See the [detail information](https://github.com/arms/framework/gin/issues/742#issuecomment-264681292).
 
 ```go
 package main
@@ -906,7 +906,7 @@ func startPage(c *gin.Context) {
 	var person Person
 	// If `GET`, only `Form` binding engine (`query`) used.
 	// If `POST`, first checks the `content-type` for `JSON` or `XML`, then uses `Form` (`form-data`).
-	// See more at https://github.com/gin-gonic/gin/blob/master/binding/binding.go#L48
+	// See more at https://github.com/arms/framework/gin/blob/master/binding/binding.go#L48
         if c.ShouldBind(&person) == nil {
                 log.Println(person.Name)
                 log.Println(person.Address)
@@ -926,7 +926,7 @@ $ curl -X GET "localhost:8085/testing?name=appleboy&address=xyz&birthday=1992-03
 
 ### Bind Uri
 
-See the [detail information](https://github.com/gin-gonic/gin/issues/846).
+See the [detail information](https://github.com/arms/framework/gin/issues/846).
 
 ```go
 package main
@@ -997,7 +997,7 @@ func main() {
 
 ### Bind HTML checkboxes
 
-See the [detail information](https://github.com/gin-gonic/gin/issues/129#issuecomment-124260092)
+See the [detail information](https://github.com/arms/framework/gin/issues/129#issuecomment-124260092)
 
 main.go
 
@@ -1456,7 +1456,7 @@ r.GET("/test", func(c *gin.Context) {
 })
 ```
 
-Issuing a HTTP redirect from POST. Refer to issue: [#444](https://github.com/gin-gonic/gin/issues/444)
+Issuing a HTTP redirect from POST. Refer to issue: [#444](https://github.com/arms/framework/gin/issues/444)
 ```go
 r.POST("/test", func(c *gin.Context) {
 	c.Redirect(http.StatusFound, "/foo")
@@ -1674,7 +1674,7 @@ func main() {
 
 ### Run multiple service using Gin
 
-See the [question](https://github.com/gin-gonic/gin/issues/346) and try the following example:
+See the [question](https://github.com/arms/framework/gin/issues/346) and try the following example:
 
 ```go
 package main
@@ -1767,7 +1767,7 @@ There are a few approaches you can use to perform a graceful shutdown or restart
 
 #### Third-party packages
 
-We can use [fvbock/endless](https://github.com/fvbock/endless) to replace the default `ListenAndServe`. Refer to issue [#296](https://github.com/gin-gonic/gin/issues/296) for more details.
+We can use [fvbock/endless](https://github.com/fvbock/endless) to replace the default `ListenAndServe`. Refer to issue [#296](https://github.com/arms/framework/gin/issues/296) for more details.
 
 ```go
 router := gin.Default()
@@ -2021,7 +2021,7 @@ enough to call binding at once.
 * This feature is only needed for some formats -- `JSON`, `XML`, `MsgPack`,
 `ProtoBuf`. For other formats, `Query`, `Form`, `FormPost`, `FormMultipart`,
 can be called by `c.ShouldBind()` multiple times without any damage to
-performance (See [#1341](https://github.com/gin-gonic/gin/pull/1341)).
+performance (See [#1341](https://github.com/arms/framework/gin/pull/1341)).
 
 ### Bind form-data request with custom struct and custom tag
 

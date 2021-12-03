@@ -2,9 +2,10 @@ package middleware
 
 import (
 	"context"
-	"github.com/arms/framework"
 	"log"
 	"time"
+
+	"github.com/arms/framework"
 )
 
 func Timeout(d time.Duration) framework.ControllerHandler {

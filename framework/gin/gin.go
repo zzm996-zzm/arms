@@ -14,8 +14,8 @@ import (
 	"strings"
 	"sync"
 
+	"github.com/arms/framework/gin/internal/bytesconv"
 	"github.com/arms/framework/gin/render"
-	"github.com/gin-gonic/gin/internal/bytesconv"
 )
 
 const defaultMultipartMemory = 32 << 20 // 32 MB

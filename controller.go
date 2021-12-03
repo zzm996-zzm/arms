@@ -2,8 +2,9 @@ package main
 
 import (
 	"fmt"
-	"simple/framework"
 	"time"
+
+	"github.com/arms/framework"
 )
 
 func UserLoginController(c *framework.Context) error {

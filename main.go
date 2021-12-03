@@ -6,8 +6,9 @@ import (
 	"net/http"
 	"os"
 	"os/signal"
-	"simple/framework"
 	"syscall"
+
+	"github.com/arms/framework"
 )
 
 func main() {
