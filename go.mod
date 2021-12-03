@@ -4,7 +4,6 @@ go 1.16
 
 require (
 	github.com/gin-contrib/sse v0.1.0
-	github.com/gin-gonic/gin v1.7.7
 	github.com/go-playground/validator/v10 v10.9.0
 	github.com/goccy/go-json v0.7.10
 	github.com/json-iterator/go v1.1.12
