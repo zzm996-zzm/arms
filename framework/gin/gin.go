@@ -14,6 +14,7 @@ import (
 	"strings"
 	"sync"
 
+	"github.com/arms/framework"
 	"github.com/arms/framework/gin/internal/bytesconv"
 	"github.com/arms/framework/gin/render"
 )
@@ -155,6 +156,9 @@ type Engine struct {
 	maxSections      uint16
 	trustedProxies   []string
 	trustedCIDRs     []*net.IPNet
+
+	//自定义容器
+	container framework.Container
 }
 
 var _ IRouter = &Engine{}
@@ -191,6 +195,8 @@ func New() *Engine {
 		secureJSONPrefix:       "while(1);",
 		trustedProxies:         []string{"0.0.0.0/0"},
 		trustedCIDRs:           defaultTrustedCIDRs,
+
+		container: framework.NewAppContainer(),
 	}
 	engine.RouterGroup.engine = engine
 	engine.pool.New = func() interface{} {
@@ -210,7 +216,7 @@ func Default() *Engine {
 func (engine *Engine) allocateContext() *Context {
 	v := make(Params, 0, engine.maxParams)
 	skippedNodes := make([]skippedNode, 0, engine.maxSections)
-	return &Context{engine: engine, params: &v, skippedNodes: &skippedNodes}
+	return &Context{engine: engine, params: &v, skippedNodes: &skippedNodes, container: engine.container}
 }
 
 // Delims sets template left and right delims and returns an Engine instance.

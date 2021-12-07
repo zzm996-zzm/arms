@@ -14,7 +14,6 @@ func Cost() gin.HandlerFunc {
 		// 记录开始时间
 		start := time.Now()
 
-		log.Printf("api uri start: %v", c.Request.RequestURI)
 		// 使用next执行具体的业务逻辑
 		c.Next()
 
