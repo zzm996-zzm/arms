@@ -24,6 +24,7 @@ func main() {
 	core.Use(middleware.Cost())
 
 	hadeHttp.Routes(core)
+
 	server := &http.Server{
 		Handler: core,
 		Addr:    ":8080",
