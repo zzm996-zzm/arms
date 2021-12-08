@@ -213,6 +213,16 @@ func Default() *Engine {
 	return engine
 }
 
+// SetContainer 设置服务容器
+func (engine *Engine) SetContainer(container framework.Container) {
+	engine.container = container
+}
+
+// GetContainer 获取容器
+func (engine *Engine) GetContainer() framework.Container {
+	return engine.container
+}
+
 func (engine *Engine) allocateContext() *Context {
 	v := make(Params, 0, engine.maxParams)
 	skippedNodes := make([]skippedNode, 0, engine.maxSections)
