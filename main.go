@@ -11,18 +11,19 @@ import (
 
 	"github.com/arms/framework/gin"
 	"github.com/arms/framework/middleware"
-	"github.com/arms/metrics"
-	"github.com/arms/provider/demo"
+	"github.com/arms/framework/provider/app"
+
+	hadeHttp "github.com/arms/app/http"
 )
 
 func main() {
 	core := gin.New()
 
-	core.Bind(&demo.DemoServiceProvider{})
+	core.Bind(&app.ArmsAppProvider{})
 	core.Use(gin.Recovery())
 	core.Use(middleware.Cost())
 
-	registerRouter(core)
+	hadeHttp.Routes(core)
 	server := &http.Server{
 		Handler: core,
 		Addr:    ":8080",
@@ -32,9 +33,6 @@ func main() {
 	go func() {
 		server.ListenAndServe()
 	}()
-
-	console := metrics.NewConsoleReporter(metrics.NewRedisMetricsStorage())
-	console.StartRepeatedReport(60)
 
 	// 当前的goroutine等待信号量
 	quit := make(chan os.Signal)

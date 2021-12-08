@@ -1,4 +1,4 @@
-package demo
+package demoService
 
 const Key = "arms:demo"
 

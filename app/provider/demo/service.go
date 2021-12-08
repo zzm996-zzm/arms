@@ -1,4 +1,4 @@
-package demo
+package demoService
 
 import (
 	"fmt"
