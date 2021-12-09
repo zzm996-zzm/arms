@@ -26,6 +26,7 @@ import (
 	"strings"
 
 	"github.com/arms/framework"
+	"github.com/robfig/cron/v3"
 	flag "github.com/spf13/pflag"
 )
 
@@ -36,10 +37,20 @@ type FParseErrWhitelist flag.ParseErrorsWhitelist
 // E.g.  'go run ...' - 'run' is the command. Cobra requires
 // you to define the usage and description as part of your command
 // definition to ensure usability.
+
+// CronSpec 保存Cron命令的信息，用于展示
+
 type Command struct {
 
 	//自定义引入容器
 	container framework.Container
+
+	//定时命令
+	// Command支持cron，只在RootCommand中有这个值
+	Cron *cron.Cron
+	// 对应Cron命令的信息
+	CronSpecs []CronSpec
+
 	// Use is the one-line usage message.
 	// Recommended syntax is as follow:
 	//   [ ] identifies an optional argument. Arguments that are not enclosed in brackets are required.
@@ -226,16 +237,6 @@ type Command struct {
 	// SuggestionsMinimumDistance defines minimum levenshtein distance to display suggestions.
 	// Must be > 0.
 	SuggestionsMinimumDistance int
-}
-
-// SetContainer 设置服务容器
-func (c *Command) SetContainer(container framework.Container) {
-	c.container = container
-}
-
-// GetContainer 获取容器
-func (c *Command) GetContainer() framework.Container {
-	return c.Root().container
 }
 
 // Context returns underlying command context. If command wasn't

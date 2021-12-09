@@ -2,7 +2,6 @@ package app
 
 import (
 	"errors"
-	"flag"
 	"path/filepath"
 
 	"github.com/arms/framework"
@@ -27,13 +26,13 @@ func (app *ArmsApp) BaseFolder() string {
 		return app.baseFolder
 	}
 
-	//如果没有设置
-	var baseFolder string
-	flag.StringVar(&baseFolder, "base_folder", "", "base_folder参数, 默认为当前路径")
-	flag.Parse()
-	if baseFolder != "" {
-		return baseFolder
-	}
+	// //如果没有设置
+	// var baseFolder string
+	// flag.StringVar(&baseFolder, "base_folder", "", "base_folder参数, 默认为当前路径")
+	// flag.Parse()
+	// if baseFolder != "" {
+	// 	return baseFolder
+	// }
 
 	//如果参数也没有，则使用默认的当前路径
 	return util.GetExecDirectory()
