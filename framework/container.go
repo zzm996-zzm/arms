@@ -60,13 +60,12 @@ func (app *AppContainer) Bind(provider ServiceProvider) error {
 }
 
 func (app *AppContainer) instanceBind(provider ServiceProvider) error {
-	app.lock.Lock()
-	defer app.lock.Unlock()
 	instance, err := app.newInstance(provider, nil)
 	if err != nil {
 		return errors.New(err.Error())
 	}
-
+	app.lock.Lock()
+	defer app.lock.Unlock()
 	app.instances[provider.Name()] = instance
 
 	return nil

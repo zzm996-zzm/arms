@@ -1,8 +1,6 @@
 package demoService
 
 import (
-	"fmt"
-
 	"github.com/arms/framework"
 )
 
@@ -32,6 +30,5 @@ func (sp *DemoServiceProvider) Params(c framework.Container) []interface{} {
 
 // Boot 方法我们这里我们什么逻辑都不执行, 只打印一行日志信息
 func (sp *DemoServiceProvider) Boot(c framework.Container) error {
-	fmt.Println("demo service boot")
 	return nil
 }

@@ -7,6 +7,7 @@ import (
 	"github.com/arms/framework"
 	"github.com/arms/framework/contract"
 	"github.com/arms/framework/util"
+	"github.com/google/uuid"
 )
 
 var _ contract.ArmsApp
@@ -14,7 +15,12 @@ var _ contract.ArmsApp
 type ArmsApp struct {
 	contract.ArmsApp
 	container  framework.Container //服务容器
-	baseFolder string              //基础路径
+	appId      string
+	baseFolder string //基础路径
+}
+
+func (app *ArmsApp) AppID() string {
+	return app.appId
 }
 
 func (app *ArmsApp) Version() string {
@@ -92,5 +98,6 @@ func NewArmsApp(params ...interface{}) (interface{}, error) {
 	// 有两个参数，一个是容器，一个是baseFolder
 	container := params[0].(framework.Container)
 	baseFolder := params[1].(string)
-	return &ArmsApp{baseFolder: baseFolder, container: container}, nil
+	appId := uuid.New().String()
+	return &ArmsApp{appId: appId, baseFolder: baseFolder, container: container}, nil
 }

@@ -3,6 +3,8 @@ package contract
 const AppKey = "arms:app"
 
 type ArmsApp interface {
+	//获取当前服务的唯一AppID 可用于分布式锁
+	AppID() string
 	//Version 定义当前版本
 	Version() string
 	//BaseFolder 定义项目基础地址
