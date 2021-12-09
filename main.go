@@ -5,6 +5,8 @@ import (
 	armsHttp "github.com/arms/app/http"
 	"github.com/arms/framework"
 	"github.com/arms/framework/provider/app"
+	"github.com/arms/framework/provider/distributed"
+	"github.com/arms/framework/provider/env"
 	"github.com/arms/framework/provider/kernel"
 )
 
@@ -14,6 +16,8 @@ func main() {
 	// 绑定App服务提供者
 	container.Bind(&app.ArmsAppProvider{})
 	// 后续初始化需要绑定的服务提供者...
+	container.Bind(&distributed.LocalDistributedProvider{})
+	container.Bind(&env.EnvProvider{})
 
 	// 将HTTP引擎初始化,并且作为服务提供者绑定到服务容器中
 	if engine, err := armsHttp.NewHttpEngine(); err == nil {
