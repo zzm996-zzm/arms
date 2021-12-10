@@ -12,6 +12,7 @@ require (
 	github.com/inconshreveable/mousetrap v1.0.0
 	github.com/json-iterator/go v1.1.12
 	github.com/kardianos/osext v0.0.0-20190222173326-2bc1f35cddc0 // indirect
+	github.com/kr/pretty v0.3.0
 	github.com/mattn/go-isatty v0.0.14
 	github.com/mitchellh/mapstructure v1.4.1
 	github.com/robfig/cron/v3 v3.0.1
