@@ -17,6 +17,8 @@ type ArmsApp struct {
 	container  framework.Container //服务容器
 	appId      string
 	baseFolder string //基础路径
+
+	configMap map[string]string // 配置加载
 }
 
 func (app *ArmsApp) AppID() string {
@@ -45,47 +47,77 @@ func (app *ArmsApp) BaseFolder() string {
 }
 
 func (app *ArmsApp) ConfigFolder() string {
+	if val, ok := app.configMap["config_folder"]; ok {
+		return val
+	}
 	return filepath.Join(app.BaseFolder(), "config")
 }
 
 func (app ArmsApp) StorageFolder() string {
+	if val, ok := app.configMap["storage_folder"]; ok {
+		return val
+	}
 	return filepath.Join(app.BaseFolder(), "storage")
 }
 func (app ArmsApp) HttpFolder() string {
+	if val, ok := app.configMap["http_folder"]; ok {
+		return val
+	}
 	return filepath.Join(app.BaseFolder(), "http")
 }
 
 func (app ArmsApp) ConsoleFolder() string {
+	if val, ok := app.configMap["console_folder"]; ok {
+		return val
+	}
 	return filepath.Join(app.BaseFolder(), "console")
 }
 
 // ProviderFolder 定义业务自己的服务提供者地址
 func (app ArmsApp) ProviderFolder() string {
+	if val, ok := app.configMap["provider_folder"]; ok {
+		return val
+	}
 	return filepath.Join(app.BaseFolder(), "provider")
 }
 
 // TestFolder 定义测试需要的信息
 func (app ArmsApp) TestFolder() string {
+	if val, ok := app.configMap["test_folder"]; ok {
+		return val
+	}
 	return filepath.Join(app.BaseFolder(), "test")
 }
 
 // MiddlewareFolder 定义业务自己定义的中间件
 func (app ArmsApp) MiddlewareFolder() string {
+	if val, ok := app.configMap["middleware_folder"]; ok {
+		return val
+	}
 	return filepath.Join(app.HttpFolder(), "middleware")
 }
 
 // LogFolder 表示日志存放地址
 func (app ArmsApp) LogFolder() string {
+	if val, ok := app.configMap["log_folder"]; ok {
+		return val
+	}
 	return filepath.Join(app.StorageFolder(), "log")
 }
 
 // CommandFolder 定义业务定义的命令
 func (app ArmsApp) CommandFolder() string {
+	if val, ok := app.configMap["command_folder"]; ok {
+		return val
+	}
 	return filepath.Join(app.ConsoleFolder(), "command")
 }
 
 // RuntimeFolder 定义业务的运行中间态信息
 func (app ArmsApp) RuntimeFolder() string {
+	if val, ok := app.configMap["runtime_folder"]; ok {
+		return val
+	}
 	return filepath.Join(app.StorageFolder(), "runtime")
 }
 
@@ -100,4 +132,11 @@ func NewArmsApp(params ...interface{}) (interface{}, error) {
 	baseFolder := params[1].(string)
 	appId := uuid.New().String()
 	return &ArmsApp{appId: appId, baseFolder: baseFolder, container: container}, nil
+}
+
+// LoadAppConfig 加载配置map
+func (app *ArmsApp) LoadAppConfig(kv map[string]string) {
+	for key, val := range kv {
+		app.configMap[key] = val
+	}
 }

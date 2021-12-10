@@ -8,7 +8,7 @@ const (
 	// EnvDevelopment 代表开发环境
 	EnvDevelopment = "development"
 	// EnvKey 是环境变量服务字符串凭证
-	EnvKey = "hade:env"
+	EnvKey = "arms:env"
 )
 
 // Env 定义环境变量服务

@@ -109,9 +109,7 @@ func getOsEnv() map[string]string {
 
 func overwrite(os, us map[string]string) {
 	for k, v := range os {
-		if _, has := us[k]; has {
-			us[k] = v
-		}
+		us[k] = v
 	}
 
 }
