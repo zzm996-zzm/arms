@@ -24,5 +24,8 @@ type ArmsApp interface {
 	// TestFolder 存放测试所需要的信息
 	TestFolder() string
 
+	// AppFolder 定义业务代码所在的目录，用于监控文件变更使用
+	AppFolder() string
+
 	LoadAppConfig(v map[string]string)
 }
