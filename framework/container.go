@@ -46,6 +46,15 @@ func NewAppContainer() *AppContainer {
 	}
 }
 
+func (app *AppContainer) NameList() []string {
+	ret := []string{}
+	for _, provider := range app.providers {
+		name := provider.Name()
+		ret = append(ret, name)
+	}
+	return ret
+}
+
 func (app *AppContainer) Bind(provider ServiceProvider) error {
 	//写锁
 	app.lock.Lock()

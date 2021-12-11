@@ -63,14 +63,14 @@ func (app ArmsApp) HttpFolder() string {
 	if val, ok := app.configMap["http_folder"]; ok {
 		return val
 	}
-	return filepath.Join(app.BaseFolder(), "http")
+	return filepath.Join(app.BaseFolder(), "app", "http")
 }
 
 func (app ArmsApp) ConsoleFolder() string {
 	if val, ok := app.configMap["console_folder"]; ok {
 		return val
 	}
-	return filepath.Join(app.BaseFolder(), "console")
+	return filepath.Join(app.BaseFolder(), "app", "console")
 }
 
 // ProviderFolder 定义业务自己的服务提供者地址
@@ -78,7 +78,7 @@ func (app ArmsApp) ProviderFolder() string {
 	if val, ok := app.configMap["provider_folder"]; ok {
 		return val
 	}
-	return filepath.Join(app.BaseFolder(), "provider")
+	return filepath.Join(app.BaseFolder(), "app", "provider")
 }
 
 // TestFolder 定义测试需要的信息

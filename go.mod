@@ -3,6 +3,7 @@ module github.com/arms
 go 1.16
 
 require (
+	github.com/AlecAivazis/survey/v2 v2.3.2
 	github.com/cpuguy83/go-md2man/v2 v2.0.1
 	github.com/fsnotify/fsnotify v1.4.9
 	github.com/gin-contrib/sse v0.1.0
