@@ -1,9 +1,12 @@
 package command
 
 import (
+	"bytes"
 	"fmt"
+	"io/fs"
 	"io/ioutil"
 	"os"
+	"path"
 	"path/filepath"
 	"strings"
 	"text/template"
@@ -12,13 +15,14 @@ import (
 	"github.com/arms/framework/cobra"
 	"github.com/arms/framework/contract"
 	"github.com/arms/framework/util"
+	"github.com/go-git/go-git/v5"
 	"github.com/pkg/errors"
 )
 
 // 初始化中间件相关命令
 func initMiddlewareCommand() *cobra.Command {
 	middlewareCommand.AddCommand(middlewareListCommand)
-	// middlewareCommand.AddCommand(middlewareMigrateCommand)
+	middlewareCommand.AddCommand(middlewareMigrateCommand)
 	middlewareCommand.AddCommand(middlewareCreateCommand)
 	return middlewareCommand
 }
@@ -51,6 +55,79 @@ var middlewareListCommand = &cobra.Command{
 				fmt.Println(f.Name())
 			}
 		}
+		return nil
+	},
+}
+
+var middlewareMigrateCommand = &cobra.Command{
+	Use:   "migrate",
+	Short: "迁移gin-contrib中间件, 迁移地址：https://github.com/gin-contrib/[middleware].git",
+	RunE: func(c *cobra.Command, args []string) error {
+		container := c.GetContainer()
+		fmt.Println("迁移一个Gin中间件")
+		var repo string
+		{
+			prompt := &survey.Input{
+				Message: "请输入中间件名称：",
+			}
+			err := survey.AskOne(prompt, &repo)
+			if err != nil {
+				return err
+			}
+		}
+
+		appService := container.MustMake(contract.AppKey).(contract.ArmsApp)
+		middlewarePath := appService.MiddlewareFolder()
+		url := "https://github.com/gin-contrib/" + repo + ".git"
+		fmt.Println("下载中间件 gin-contrib:")
+		fmt.Println(url)
+		_, err := git.PlainClone(path.Join(middlewarePath, repo), false, &git.CloneOptions{
+			URL:      url,
+			Progress: os.Stdout,
+		})
+		fmt.Println(err)
+		if err != nil {
+			return err
+		}
+
+		//删除不必要的文件
+		repoFolder := path.Join(middlewarePath, repo)
+		modPath := filepath.Join(repoFolder, "go.mod")
+		sumPath := filepath.Join(repoFolder, "go.sum")
+		gitPath := filepath.Join(repoFolder, ".git")
+		fmt.Println("remove " + modPath)
+		os.Remove(modPath)
+		fmt.Println("remove " + sumPath)
+		os.Remove(sumPath)
+		fmt.Println("remove " + gitPath)
+		os.RemoveAll(gitPath)
+
+		//替换关键词
+		filepath.Walk(repoFolder, func(path string, info fs.FileInfo, err error) error {
+			if info.IsDir() {
+				return nil
+			}
+
+			if filepath.Ext(path) != ".go" {
+				return nil
+			}
+
+			c, err := ioutil.ReadFile(path)
+			if err != nil {
+				return err
+			}
+			isContain := bytes.Contains(c, []byte("github.com/gin-gonic/gin"))
+			if isContain {
+				fmt.Println("更新文件: " + path)
+				//TODO：重构
+				c = bytes.ReplaceAll(c, []byte("github.com/gin-gonic/gin"), []byte("github.com/arms/framework/gin"))
+				ioutil.WriteFile(path, c, 0644)
+				if err != nil {
+					return err
+				}
+			}
+			return nil
+		})
 		return nil
 	},
 }
