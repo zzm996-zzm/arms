@@ -47,7 +47,7 @@ var providerListCommand = &cobra.Command{
 
 var providerCreateCommand = &cobra.Command{
 	Use:   "new",
-	Short: "服务提供相关命令",
+	Short: "创建一个服务",
 	RunE: func(c *cobra.Command, args []string) error {
 		container := c.GetContainer()
 		fmt.Println("创建一个服务")
