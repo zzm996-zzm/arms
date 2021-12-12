@@ -8,10 +8,10 @@ import (
 	"text/template"
 
 	"github.com/AlecAivazis/survey/v2"
-	"github.com/arms/framework/cobra"
-	"github.com/arms/framework/contract"
-	"github.com/arms/framework/util"
 	"github.com/pkg/errors"
+	"github.com/zzm996-zzm/arms/framework/cobra"
+	"github.com/zzm996-zzm/arms/framework/contract"
+	"github.com/zzm996-zzm/arms/framework/util"
 )
 
 // 初始化command相关命令

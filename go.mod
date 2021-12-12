@@ -1,4 +1,4 @@
-module github.com/arms
+module github.com/zzm996-zzm/arms
 
 go 1.16
 
@@ -6,10 +6,12 @@ require (
 	github.com/AlecAivazis/survey/v2 v2.3.2
 	github.com/cpuguy83/go-md2man/v2 v2.0.1
 	github.com/fsnotify/fsnotify v1.4.9
+	github.com/gin-contrib/cors v1.3.1
 	github.com/gin-contrib/sse v0.1.0
 	github.com/go-git/go-git/v5 v5.4.2
 	github.com/go-playground/validator/v10 v10.9.0
 	github.com/goccy/go-json v0.7.10
+	github.com/google/go-github/v39 v39.2.0
 	github.com/google/uuid v1.1.2
 	github.com/inconshreveable/mousetrap v1.0.0
 	github.com/jonboulle/clockwork v0.2.2 // indirect

@@ -6,8 +6,8 @@ import (
 	"os/exec"
 	"path/filepath"
 
-	"github.com/arms/framework/cobra"
-	"github.com/arms/framework/contract"
+	"github.com/zzm996-zzm/arms/framework/cobra"
+	"github.com/zzm996-zzm/arms/framework/contract"
 )
 
 // build相关的命令

@@ -7,8 +7,8 @@ import (
 	"syscall"
 	"time"
 
-	"github.com/arms/framework"
-	"github.com/arms/framework/contract"
+	"github.com/zzm996-zzm/arms/framework"
+	"github.com/zzm996-zzm/arms/framework/contract"
 )
 
 type LocalDistributedService struct {

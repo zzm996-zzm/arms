@@ -1,6 +1,6 @@
 package http
 
-import "github.com/arms/framework/gin"
+import "github.com/zzm996-zzm/arms/framework/gin"
 
 // NewHttpEngine 创建了一个绑定了路由的 Web 引擎
 func NewHttpEngine() (*gin.Engine, error) {

@@ -12,11 +12,11 @@ import (
 	"text/template"
 
 	"github.com/AlecAivazis/survey/v2"
-	"github.com/arms/framework/cobra"
-	"github.com/arms/framework/contract"
-	"github.com/arms/framework/util"
 	"github.com/go-git/go-git/v5"
 	"github.com/pkg/errors"
+	"github.com/zzm996-zzm/arms/framework/cobra"
+	"github.com/zzm996-zzm/arms/framework/contract"
+	"github.com/zzm996-zzm/arms/framework/util"
 )
 
 // 初始化中间件相关命令
@@ -120,7 +120,7 @@ var middlewareMigrateCommand = &cobra.Command{
 			if isContain {
 				fmt.Println("更新文件: " + path)
 				//TODO：重构
-				c = bytes.ReplaceAll(c, []byte("github.com/gin-gonic/gin"), []byte("github.com/arms/framework/gin"))
+				c = bytes.ReplaceAll(c, []byte("github.com/gin-gonic/gin"), []byte("github.com/zzm996-zzm/arms/framework/gin"))
 				ioutil.WriteFile(path, c, 0644)
 				if err != nil {
 					return err

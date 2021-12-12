@@ -1,6 +1,6 @@
 package formatter
 
-import "github.com/arms/framework/contract"
+import "github.com/zzm996-zzm/arms/framework/contract"
 
 func Prefix(level contract.LogLevel) string {
 	prefix := ""

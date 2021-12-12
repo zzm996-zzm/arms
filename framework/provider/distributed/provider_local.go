@@ -1,8 +1,8 @@
 package distributed
 
 import (
-	"github.com/arms/framework"
-	"github.com/arms/framework/contract"
+	"github.com/zzm996-zzm/arms/framework"
+	"github.com/zzm996-zzm/arms/framework/contract"
 )
 
 // ArmsAppProvider 提供App的具体实现方法

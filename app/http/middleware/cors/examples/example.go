@@ -4,7 +4,7 @@ import (
 	"time"
 
 	"github.com/gin-contrib/cors"
-	"github.com/arms/framework/gin"
+	"github.com/zzm996-zzm/arms/framework/gin"
 )
 
 func main() {

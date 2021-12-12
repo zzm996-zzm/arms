@@ -1,9 +1,9 @@
 package kernel
 
 import (
-	"github.com/arms/framework"
-	"github.com/arms/framework/contract"
-	"github.com/arms/framework/gin"
+	"github.com/zzm996-zzm/arms/framework"
+	"github.com/zzm996-zzm/arms/framework/contract"
+	"github.com/zzm996-zzm/arms/framework/gin"
 )
 
 type ArmsKernelProvider struct {

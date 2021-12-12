@@ -9,8 +9,8 @@ import (
 	"syscall"
 	"time"
 
-	"github.com/arms/framework/cobra"
-	"github.com/arms/framework/contract"
+	"github.com/zzm996-zzm/arms/framework/cobra"
+	"github.com/zzm996-zzm/arms/framework/contract"
 )
 
 var appAddress = ""

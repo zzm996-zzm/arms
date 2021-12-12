@@ -1,9 +1,9 @@
 package http
 
 import (
-	"github.com/arms/app/http/module/demo"
-	"github.com/arms/framework/gin"
-	"github.com/arms/framework/middleware/static"
+	"github.com/zzm996-zzm/arms/app/http/module/demo"
+	"github.com/zzm996-zzm/arms/framework/gin"
+	"github.com/zzm996-zzm/arms/framework/middleware/static"
 )
 
 func Routes(r *gin.Engine) {

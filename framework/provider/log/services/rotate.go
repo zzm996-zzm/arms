@@ -2,18 +2,19 @@ package services
 
 import (
 	"fmt"
-	"github.com/arms/framework"
-	"github.com/arms/framework/contract"
-	"github.com/arms/framework/util"
-	"github.com/pkg/errors"
 	"os"
 	"path/filepath"
 	"time"
 
+	"github.com/pkg/errors"
+	"github.com/zzm996-zzm/arms/framework"
+	"github.com/zzm996-zzm/arms/framework/contract"
+	"github.com/zzm996-zzm/arms/framework/util"
+
 	rotatelogs "github.com/lestrrat-go/file-rotatelogs"
 )
 
-type RotateLog struct{
+type RotateLog struct {
 	Log
 	//存储的目录
 	folder string
@@ -21,8 +22,7 @@ type RotateLog struct{
 	file string
 }
 
-
-func NewRotateLog (params ...interface{})(interface{},error){
+func NewRotateLog(params ...interface{}) (interface{}, error) {
 	// 参数解析
 	c := params[0].(framework.Container)
 	level := params[1].(contract.LogLevel)
@@ -34,14 +34,14 @@ func NewRotateLog (params ...interface{})(interface{},error){
 
 	//获取folder
 	folder := appService.LogFolder()
-	if configService.IsExist("log.folder"){
+	if configService.IsExist("log.folder") {
 		folder = configService.GetString("log.folder")
 	}
 
 	//如果folder 不存在
 	//TODO:err handler
-	if util.Exists(folder){
-		os.MkdirAll(folder,os.ModePerm)
+	if util.Exists(folder) {
+		os.MkdirAll(folder, os.ModePerm)
 	}
 
 	// 从配置文件中获取file信息，否则使用默认的arms.log
@@ -58,7 +58,6 @@ func NewRotateLog (params ...interface{})(interface{},error){
 
 	linkName := rotatelogs.WithLinkName(filepath.Join(folder, file))
 	options := []rotatelogs.Option{linkName}
-
 
 	// 从配置文件获取rotate_count信息
 	if configService.IsExist("log.rotate_count") {

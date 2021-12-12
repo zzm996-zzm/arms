@@ -3,8 +3,8 @@ package kernel
 import (
 	"net/http"
 
-	"github.com/arms/framework/contract"
-	"github.com/arms/framework/gin"
+	"github.com/zzm996-zzm/arms/framework/contract"
+	"github.com/zzm996-zzm/arms/framework/gin"
 )
 
 var _ contract.Kernel = new(ArmsKernelService)

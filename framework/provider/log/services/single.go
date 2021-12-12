@@ -1,12 +1,13 @@
 package services
 
 import (
-	"github.com/arms/framework"
-	"github.com/arms/framework/contract"
-	"github.com/arms/framework/util"
-	"github.com/pkg/errors"
 	"os"
 	"path/filepath"
+
+	"github.com/pkg/errors"
+	"github.com/zzm996-zzm/arms/framework"
+	"github.com/zzm996-zzm/arms/framework/contract"
+	"github.com/zzm996-zzm/arms/framework/util"
 )
 
 type SingleLog struct {
@@ -16,7 +17,7 @@ type SingleLog struct {
 	fd     *os.File
 }
 
-func NewSingleLog(params ...interface{})(interface{},error){
+func NewSingleLog(params ...interface{}) (interface{}, error) {
 	c := params[0].(framework.Container)
 	level := params[1].(contract.LogLevel)
 	ctxFielder := params[2].(contract.CtxFielder)
@@ -53,7 +54,5 @@ func NewSingleLog(params ...interface{})(interface{},error){
 	log.SetOutPut(fd)
 	log.c = c
 
-	return log,nil
+	return log, nil
 }
-
-

@@ -9,8 +9,8 @@ import (
 	"fmt"
 	"testing"
 
-	"github.com/arms/framework/gin/internal/json"
 	"github.com/stretchr/testify/assert"
+	"github.com/zzm996-zzm/arms/framework/gin/internal/json"
 )
 
 func TestError(t *testing.T) {

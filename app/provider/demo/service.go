@@ -1,7 +1,7 @@
 package demoService
 
 import (
-	"github.com/arms/framework"
+	"github.com/zzm996-zzm/arms/framework"
 )
 
 // 具体的接口实例

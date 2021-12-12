@@ -1,15 +1,16 @@
 package log
 
 import (
-	"github.com/arms/framework"
-	"github.com/arms/framework/contract"
-	"github.com/arms/framework/provider/log/formatter"
-	"github.com/arms/framework/provider/log/services"
 	"io"
 	"strings"
+
+	"github.com/zzm996-zzm/arms/framework"
+	"github.com/zzm996-zzm/arms/framework/contract"
+	"github.com/zzm996-zzm/arms/framework/provider/log/formatter"
+	"github.com/zzm996-zzm/arms/framework/provider/log/services"
 )
 
-type LogServiceProvider struct{
+type LogServiceProvider struct {
 	framework.ServiceProvider
 
 	Driver string // Driver
@@ -60,7 +61,6 @@ func (l *LogServiceProvider) IsDefer() bool {
 	return false
 }
 
-
 // Params 定义要传递给实例化方法的参数
 func (l *LogServiceProvider) Params(c framework.Container) []interface{} {
 	// 获取configService
@@ -94,8 +94,6 @@ func (l *LogServiceProvider) Params(c framework.Container) []interface{} {
 func (l *LogServiceProvider) Name() string {
 	return contract.LogKey
 }
-
-
 
 // logLevel get level from string
 func logLevel(config string) contract.LogLevel {

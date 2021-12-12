@@ -1,14 +1,14 @@
 package main
 
 import (
-	"github.com/arms/app/console"
-	armsHttp "github.com/arms/app/http"
-	"github.com/arms/framework"
-	"github.com/arms/framework/provider/app"
-	"github.com/arms/framework/provider/config"
-	"github.com/arms/framework/provider/distributed"
-	"github.com/arms/framework/provider/env"
-	"github.com/arms/framework/provider/kernel"
+	"github.com/zzm996-zzm/arms/app/console"
+	armsHttp "github.com/zzm996-zzm/arms/app/http"
+	"github.com/zzm996-zzm/arms/framework"
+	"github.com/zzm996-zzm/arms/framework/provider/app"
+	"github.com/zzm996-zzm/arms/framework/provider/config"
+	"github.com/zzm996-zzm/arms/framework/provider/distributed"
+	"github.com/zzm996-zzm/arms/framework/provider/env"
+	"github.com/zzm996-zzm/arms/framework/provider/kernel"
 )
 
 func main() {

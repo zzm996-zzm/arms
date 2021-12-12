@@ -1,8 +1,8 @@
 package demo
 
 import (
-	demoService "github.com/arms/app/provider/demo"
-	"github.com/arms/framework/gin"
+	demoService "github.com/zzm996-zzm/arms/app/provider/demo"
+	"github.com/zzm996-zzm/arms/framework/gin"
 )
 
 func Register(r *gin.Engine) error {

@@ -5,7 +5,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/arms/framework/gin"
+	"github.com/zzm996-zzm/arms/framework/gin"
 )
 
 // Config represents all available options for the middleware.
@@ -38,7 +38,7 @@ type Config struct {
 	// API specification
 	ExposeHeaders []string
 
-	// MaxAge indicates how long (with second-precision) the results of a preflight request 
+	// MaxAge indicates how long (with second-precision) the results of a preflight request
 	// can be cached
 	MaxAge time.Duration
 

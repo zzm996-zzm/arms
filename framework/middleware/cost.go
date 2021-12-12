@@ -4,7 +4,7 @@ import (
 	"log"
 	"time"
 
-	"github.com/arms/framework/gin"
+	"github.com/zzm996-zzm/arms/framework/gin"
 )
 
 // recovery机制，将协程中的函数异常进行捕获

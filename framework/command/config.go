@@ -3,10 +3,12 @@ package command
 import (
 	"errors"
 	"fmt"
-	"github.com/arms/framework/cobra"
-	"github.com/arms/framework/contract"
+
 	"github.com/kr/pretty"
+	"github.com/zzm996-zzm/arms/framework/cobra"
+	"github.com/zzm996-zzm/arms/framework/contract"
 )
+
 // initConfigCommand 获取配置相关的命令
 func initConfigCommand() *cobra.Command {
 	configCommand.AddCommand(configGetCommand)
@@ -40,7 +42,6 @@ var configGetCommand = &cobra.Command{
 			fmt.Println("配置路径 ", configPath, " 不存在")
 			return nil
 		}
-
 
 		fmt.Printf("%# v\n", pretty.Formatter(val))
 		return nil

@@ -455,27 +455,27 @@ func TestListOfRoutes(t *testing.T) {
 	assertRoutePresent(t, list, RouteInfo{
 		Method:  "GET",
 		Path:    "/favicon.ico",
-		Handler: "^(.*/vendor/)?github.com/arms/framework/gin.handlerTest1$",
+		Handler: "^(.*/vendor/)?github.com/zzm996-zzm/arms/framework/gin.handlerTest1$",
 	})
 	assertRoutePresent(t, list, RouteInfo{
 		Method:  "GET",
 		Path:    "/",
-		Handler: "^(.*/vendor/)?github.com/arms/framework/gin.handlerTest1$",
+		Handler: "^(.*/vendor/)?github.com/zzm996-zzm/arms/framework/gin.handlerTest1$",
 	})
 	assertRoutePresent(t, list, RouteInfo{
 		Method:  "GET",
 		Path:    "/users/",
-		Handler: "^(.*/vendor/)?github.com/arms/framework/gin.handlerTest2$",
+		Handler: "^(.*/vendor/)?github.com/zzm996-zzm/arms/framework/gin.handlerTest2$",
 	})
 	assertRoutePresent(t, list, RouteInfo{
 		Method:  "GET",
 		Path:    "/users/:id",
-		Handler: "^(.*/vendor/)?github.com/arms/framework/gin.handlerTest1$",
+		Handler: "^(.*/vendor/)?github.com/zzm996-zzm/arms/framework/gin.handlerTest1$",
 	})
 	assertRoutePresent(t, list, RouteInfo{
 		Method:  "POST",
 		Path:    "/users/:id",
-		Handler: "^(.*/vendor/)?github.com/arms/framework/gin.handlerTest2$",
+		Handler: "^(.*/vendor/)?github.com/zzm996-zzm/arms/framework/gin.handlerTest2$",
 	})
 }
 

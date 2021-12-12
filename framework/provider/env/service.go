@@ -9,7 +9,7 @@ import (
 	"path/filepath"
 	"strings"
 
-	"github.com/arms/framework/contract"
+	"github.com/zzm996-zzm/arms/framework/contract"
 )
 
 var _ contract.Env = new(EnvService)

@@ -19,8 +19,8 @@ import (
 	"testing"
 	"time"
 
-	"github.com/arms/framework/gin/testdata/protoexample"
 	"github.com/stretchr/testify/assert"
+	"github.com/zzm996-zzm/arms/framework/gin/testdata/protoexample"
 	"google.golang.org/protobuf/proto"
 )
 

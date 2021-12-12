@@ -1,16 +1,17 @@
 package services
 
 import (
-	"github.com/arms/framework"
-	"github.com/arms/framework/contract"
 	"os"
+
+	"github.com/zzm996-zzm/arms/framework"
+	"github.com/zzm996-zzm/arms/framework/contract"
 )
 
 type ConsoleLog struct {
 	Log
 }
 
-func NewConsoleLog(params ...interface{})(interface{},error){
+func NewConsoleLog(params ...interface{}) (interface{}, error) {
 	c := params[0].(framework.Container)
 	level := params[1].(contract.LogLevel)
 	ctxFielder := params[2].(contract.CtxFielder)
@@ -23,5 +24,5 @@ func NewConsoleLog(params ...interface{})(interface{},error){
 	log.SetOutPut(os.Stdout)
 	log.SetContainer(c)
 
-	return log,nil
+	return log, nil
 }

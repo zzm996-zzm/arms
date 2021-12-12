@@ -3,16 +3,17 @@ package formatter
 import (
 	"bytes"
 	"fmt"
-	"github.com/arms/framework/contract"
 	"time"
+
+	"github.com/zzm996-zzm/arms/framework/contract"
 )
 
-func TextFormatter(level contract.LogLevel,t time.Time,msg string,fields map[string]interface{})([]byte,error){
+func TextFormatter(level contract.LogLevel, t time.Time, msg string, fields map[string]interface{}) ([]byte, error) {
 	bf := bytes.NewBuffer([]byte{})
 	separator := "\t"
 
 	//先输出日志级别
-	prefix :=Prefix(level)
+	prefix := Prefix(level)
 
 	bf.WriteString(prefix)
 	bf.WriteString(separator)

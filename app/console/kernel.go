@@ -1,9 +1,9 @@
 package console
 
 import (
-	"github.com/arms/framework"
-	"github.com/arms/framework/cobra"
-	"github.com/arms/framework/command"
+	"github.com/zzm996-zzm/arms/framework"
+	"github.com/zzm996-zzm/arms/framework/cobra"
+	"github.com/zzm996-zzm/arms/framework/command"
 )
 
 func RunCommand(container framework.Container) error {

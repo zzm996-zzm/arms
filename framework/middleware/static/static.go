@@ -6,7 +6,7 @@ import (
 	"path"
 	"strings"
 
-	"github.com/arms/framework/gin"
+	"github.com/zzm996-zzm/arms/framework/gin"
 )
 
 const INDEX = "index.html"

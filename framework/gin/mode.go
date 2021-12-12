@@ -8,7 +8,7 @@ import (
 	"io"
 	"os"
 
-	"github.com/arms/framework/gin/binding"
+	"github.com/zzm996-zzm/arms/framework/gin/binding"
 )
 
 // EnvGinMode indicates environment name for gin mode.

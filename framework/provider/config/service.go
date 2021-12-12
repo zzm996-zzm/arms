@@ -12,11 +12,11 @@ import (
 	"sync"
 	"time"
 
-	"github.com/arms/framework"
-	"github.com/arms/framework/contract"
 	"github.com/fsnotify/fsnotify"
 	"github.com/mitchellh/mapstructure"
 	"github.com/spf13/cast"
+	"github.com/zzm996-zzm/arms/framework"
+	"github.com/zzm996-zzm/arms/framework/contract"
 	"gopkg.in/yaml.v2"
 )
 

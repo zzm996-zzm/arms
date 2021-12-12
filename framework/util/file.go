@@ -4,6 +4,7 @@ import (
 	"io"
 	"io/ioutil"
 	"net/http"
+	"net/url"
 	"os"
 	"path/filepath"
 	"strings"
@@ -44,10 +45,19 @@ func SubDir(folder string) ([]string, error) {
 
 // DownloadFile will download a url to a local file. It's efficient because it will
 // write as it downloads and not load the whole file into memory.
-func DownloadFile(filepath string, url string) error {
+func DownloadFile(filepath string, _url string) error {
+
+	//TODO：添加代理
+	proxy := func(_ *http.Request) (*url.URL, error) {
+		return url.Parse("http://127.0.0.1:8001")
+	}
+
+	transport := &http.Transport{Proxy: proxy}
+
+	client := &http.Client{Transport: transport}
 
 	// Get the data
-	resp, err := http.Get(url)
+	resp, err := client.Get(_url)
 	if err != nil {
 		return err
 	}

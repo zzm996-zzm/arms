@@ -6,7 +6,7 @@ import (
 	"log"
 	"time"
 
-	"github.com/arms/framework/gin"
+	"github.com/zzm996-zzm/arms/framework/gin"
 )
 
 func Timeout(d time.Duration) gin.HandlerFunc {

@@ -1,6 +1,6 @@
 package command
 
-import "github.com/arms/framework/cobra"
+import "github.com/zzm996-zzm/arms/framework/cobra"
 
 func AddKernelCommand(root *cobra.Command) {
 	root.AddCommand(initAppCommand())
@@ -12,4 +12,5 @@ func AddKernelCommand(root *cobra.Command) {
 	root.AddCommand(initProviderCommand())
 	root.AddCommand(initCmdCommand())
 	root.AddCommand(initMiddlewareCommand())
+	root.AddCommand(initNewCommand())
 }
