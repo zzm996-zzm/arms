@@ -1,9 +1,6 @@
 package console
 
 import (
-	"time"
-
-	"github.com/arms/app/console/demo"
 	"github.com/arms/framework"
 	"github.com/arms/framework/cobra"
 	"github.com/arms/framework/command"
@@ -32,5 +29,5 @@ func AddAppCommand(rootCmd *cobra.Command) {
 	//  demo 例子
 	// rootCmd.AddCommand(demo.InitFoo())
 	// rootCmd.AddCronCommand("* * * * * *", demo.Foo1Command)
-	rootCmd.AddDistributedCronCommand("foo_func_for_test", "*/5 * * * * *", demo.FooCommand, 2*time.Second)
+	// rootCmd.AddDistributedCronCommand("foo_func_for_test", "*/5 * * * * *", demo.FooCommand, 2*time.Second)
 }
