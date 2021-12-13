@@ -5,6 +5,7 @@ go 1.16
 require (
 	github.com/AlecAivazis/survey/v2 v2.3.2
 	github.com/cpuguy83/go-md2man/v2 v2.0.1
+	github.com/erikdubbelboer/gspt v0.0.0-20210805194459-ce36a5128377 // indirect
 	github.com/fsnotify/fsnotify v1.4.9
 	github.com/gin-contrib/cors v1.3.1
 	github.com/gin-contrib/gzip v0.0.3

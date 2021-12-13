@@ -10,6 +10,17 @@ import (
 	"strings"
 )
 
+//从给定的path中创建文件
+func CreateFile(path string, filename string, content []byte) error {
+	err := MkdirAllnx(path)
+	if err != nil {
+		return err
+	}
+	fullPath := filepath.Join(path, filename)
+	err = ioutil.WriteFile(fullPath, content, 0644)
+	return err
+}
+
 // 判断所给路径文件/文件夹是否存在
 func Exists(path string) bool {
 	_, err := os.Stat(path) //os.Stat获取文件信息
@@ -20,6 +31,17 @@ func Exists(path string) bool {
 		return false
 	}
 	return true
+}
+
+//判断所给路径文件夹是否存在,如果不存在则创建
+func MkdirAllnx(path string) error {
+	if !Exists(path) {
+		if err := os.MkdirAll(path, os.ModePerm); err != nil {
+			return err
+		}
+	}
+
+	return nil
 }
 
 // 路径是否是隐藏路径
