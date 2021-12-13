@@ -1,0 +1,32 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "description": "arms测试",
+        "title": "arms",
+        "termsOfService": "https://github.com/swaggo/swag",
+        "contact": {
+            "name": "zhangzhiming",
+            "email": "zzmhaoshuai@icloud.com"
+        },
+        "license": {
+            "name": "Apache 2.0",
+            "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+        },
+        "version": "1.1"
+    },
+    "basePath": "/",
+    "paths": {},
+    "securityDefinitions": {
+        "ApiKeyAuth": {
+            "type": "apiKey",
+            "name": "Authorization",
+            "in": "header"
+        },
+        "BasicAuth": {
+            "type": "basic"
+        }
+    },
+    "x-extension-openapi": {
+        "example": "value on a json format"
+    }
+}

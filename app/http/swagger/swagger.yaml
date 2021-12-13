@@ -1,0 +1,23 @@
+basePath: /
+info:
+  contact:
+    email: zzmhaoshuai@icloud.com
+    name: zhangzhiming
+  description: arms测试
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  termsOfService: https://github.com/swaggo/swag
+  title: arms
+  version: "1.1"
+paths: {}
+securityDefinitions:
+  ApiKeyAuth:
+    in: header
+    name: Authorization
+    type: apiKey
+  BasicAuth:
+    type: basic
+swagger: "2.0"
+x-extension-openapi:
+  example: value on a json format

@@ -27,5 +27,7 @@ type ArmsApp interface {
 	// AppFolder 定义业务代码所在的目录，用于监控文件变更使用
 	AppFolder() string
 
+	HttpFolder() string
+
 	LoadAppConfig(v map[string]string)
 }
