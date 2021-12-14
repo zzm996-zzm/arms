@@ -31,11 +31,13 @@ func (log *Log) logf(level contract.LogLevel, ctx context.Context, msg string, f
 
 	//使用ctxFielder 获取context中的信息
 	fs := fields
-	if log.ctxFielder(ctx) != nil {
-		t := log.ctxFielder(ctx)
-		if t != nil {
-			for k, v := range t {
-				fs[k] = v
+	if log.ctxFielder != nil {
+		if log.ctxFielder(ctx) != nil {
+			t := log.ctxFielder(ctx)
+			if t != nil {
+				for k, v := range t {
+					fs[k] = v
+				}
 			}
 		}
 	}
@@ -64,7 +66,7 @@ func (log *Log) logf(level contract.LogLevel, ctx context.Context, msg string, f
 	return nil
 }
 
-func (log *Log) SetOutPut(output io.Writer) {
+func (log *Log) SetOutput(output io.Writer) {
 	log.output = output
 }
 

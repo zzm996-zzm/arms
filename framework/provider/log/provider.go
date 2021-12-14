@@ -10,7 +10,7 @@ import (
 	"github.com/zzm996-zzm/arms/framework/provider/log/services"
 )
 
-type LogServiceProvider struct {
+type LogProvider struct {
 	framework.ServiceProvider
 
 	Driver string // Driver
@@ -26,7 +26,7 @@ type LogServiceProvider struct {
 }
 
 // Register 注册一个服务实例
-func (l *LogServiceProvider) Register(c framework.Container) framework.NewInstance {
+func (l *LogProvider) Register(c framework.Container) framework.NewInstance {
 	if l.Driver == "" {
 		tcs, err := c.Make(contract.ConfigKey)
 		if err != nil {
@@ -39,30 +39,30 @@ func (l *LogServiceProvider) Register(c framework.Container) framework.NewInstan
 	// 根据driver的配置项确定
 	switch l.Driver {
 	case "single":
-		return nil
+		return services.NewSingleLog
 	case "rotate":
-		return nil
+		return services.NewRotateLog
 	case "console":
 		return services.NewConsoleLog
 	case "custom":
 		return nil
 	default:
-		return nil
+		return services.NewConsoleLog
 	}
 }
 
 // Boot 启动的时候注入
-func (l *LogServiceProvider) Boot(c framework.Container) error {
+func (l *LogProvider) Boot(c framework.Container) error {
 	return nil
 }
 
 // IsDefer 是否延迟加载
-func (l *LogServiceProvider) IsDefer() bool {
+func (l *LogProvider) IsDefer() bool {
 	return false
 }
 
 // Params 定义要传递给实例化方法的参数
-func (l *LogServiceProvider) Params(c framework.Container) []interface{} {
+func (l *LogProvider) Params(c framework.Container) []interface{} {
 	// 获取configService
 	configService := c.MustMake(contract.ConfigKey).(contract.Config)
 
@@ -91,7 +91,7 @@ func (l *LogServiceProvider) Params(c framework.Container) []interface{} {
 }
 
 // Name 定义对应的服务字符串凭证
-func (l *LogServiceProvider) Name() string {
+func (l *LogProvider) Name() string {
 	return contract.LogKey
 }
 

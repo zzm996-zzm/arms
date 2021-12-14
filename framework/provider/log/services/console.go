@@ -21,7 +21,7 @@ func NewConsoleLog(params ...interface{}) (interface{}, error) {
 	log.SetFormatter(formatter)
 	log.SetCtxFielder(ctxFielder)
 	log.SetLevel(level)
-	log.SetOutPut(os.Stdout)
+	log.SetOutput(os.Stdout)
 	log.SetContainer(c)
 
 	return log, nil

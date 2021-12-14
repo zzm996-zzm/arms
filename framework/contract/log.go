@@ -1,4 +1,3 @@
-
 package contract
 
 import (
@@ -30,10 +29,8 @@ const (
 	TraceLevel
 )
 
-
 // CtxFielder 定义了从context中获取信息的方法
 type CtxFielder func(ctx context.Context) map[string]interface{}
-
 
 // Formatter 定义了将日志信息组织成字符串的通用方法
 type Formatter func(level LogLevel, t time.Time, msg string, fields map[string]interface{}) ([]byte, error)

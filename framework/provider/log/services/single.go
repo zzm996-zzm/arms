@@ -51,7 +51,7 @@ func NewSingleLog(params ...interface{}) (interface{}, error) {
 		return nil, errors.Wrap(err, "open log file err")
 	}
 
-	log.SetOutPut(fd)
+	log.SetOutput(fd)
 	log.c = c
 
 	return log, nil

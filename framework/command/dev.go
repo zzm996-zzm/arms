@@ -126,6 +126,7 @@ func initDevConfig(c framework.Container) *devConfig {
 		devConfig.Backend.Port = configer.GetString("app.dev.backend.port")
 	}
 	monitorFolder := configer.GetString("app.dev.backend.monitor_folder")
+	devConfig.Backend.MonitorFolder = monitorFolder
 	if monitorFolder == "" {
 		appService := c.MustMake(contract.AppKey).(contract.ArmsApp)
 		devConfig.Backend.MonitorFolder = appService.AppFolder()

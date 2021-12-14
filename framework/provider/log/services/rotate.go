@@ -98,6 +98,6 @@ func NewRotateLog(params ...interface{}) (interface{}, error) {
 	if err != nil {
 		return nil, errors.Wrap(err, "new rotatelogs error")
 	}
-	log.SetOutPut(w)
+	log.SetOutput(w)
 	return log, nil
 }

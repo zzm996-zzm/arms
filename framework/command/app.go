@@ -31,8 +31,8 @@ const defaultAddress = ":8080"
 
 func initAppCommand() *cobra.Command {
 	appStartCommand.Flags().StringVar(&appAddress, "address", "", "设置app启动的地址，默认为:8080")
-	appStartCommand.Flags().BoolVarP(&appDaemon, "daemon", "d", false, "start app daemon")
 	appRestartCommand.Flags().BoolVarP(&appDaemon, "daemon", "d", true, "restart app daemon")
+	appStartCommand.Flags().BoolVarP(&appDaemon, "daemon", "d", false, "start app daemon")
 	appCommand.AddCommand(appStartCommand)
 	appCommand.AddCommand(appStateCommand)
 	appCommand.AddCommand(appStopCommand)
@@ -107,6 +107,7 @@ var appStartCommand = &cobra.Command{
 		}
 
 		currentFolder := util.GetExecDirectory()
+
 		//  daemon 模式
 		if appDaemon {
 			//创建一个Context
@@ -157,7 +158,6 @@ var appStartCommand = &cobra.Command{
 			return err
 		}
 		gspt.SetProcTitle("arms app")
-
 		fmt.Println("app serve url:", appAddress)
 		if err := startAppServe(server, container); err != nil {
 			fmt.Println(err)
