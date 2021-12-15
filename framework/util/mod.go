@@ -11,7 +11,6 @@ func GetModule(modPath string) string {
 	//打开文件
 	fi, err := os.Open(modPath)
 	if err != nil {
-		panic(err)
 		return ""
 	}
 	defer fi.Close()
