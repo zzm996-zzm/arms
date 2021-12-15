@@ -34,18 +34,18 @@ var _ contract.Config = new(ConfigService)
 
 func NewConfigService(params ...interface{}) (interface{}, error) {
 	container := params[0].(framework.Container)
-	envFolder := params[1].(string)
-	envMaps := params[2].(map[string]string)
+	configEnvFolder := params[1].(string)
+	envMaps   := params[2].(map[string]string)
 
 	//检查文件夹是否存在
-	if _, err := os.Stat(envFolder); os.IsNotExist(err) {
-		return nil, errors.New("folder " + envFolder + " not exist: " + err.Error())
+	if _, err := os.Stat(configEnvFolder); os.IsNotExist(err) {
+		return nil, errors.New("folder " + configEnvFolder + " not exist: " + err.Error())
 	}
 
 	//实例化
 	conf := &ConfigService{
 		c:        container,
-		folder:   envFolder,
+		folder:   configEnvFolder,
 		envMaps:  envMaps,
 		confMaps: map[string]interface{}{},
 		confRaws: map[string][]byte{},
@@ -54,13 +54,13 @@ func NewConfigService(params ...interface{}) (interface{}, error) {
 	}
 
 	//读取每个文件
-	files, err := ioutil.ReadDir(envFolder)
+	files, err := ioutil.ReadDir(configEnvFolder)
 	if err != nil {
 		return nil, err
 	}
 	for _, file := range files {
 		fileName := file.Name()
-		err := conf.loadConfigFile(envFolder, fileName)
+		err := conf.loadConfigFile(configEnvFolder, fileName)
 		if err != nil {
 			log.Println(err)
 			continue
@@ -73,7 +73,7 @@ func NewConfigService(params ...interface{}) (interface{}, error) {
 		return nil, err
 	}
 
-	err = watch.Add(envFolder)
+	err = watch.Add(configEnvFolder)
 	if err != nil {
 		return nil, err
 	}

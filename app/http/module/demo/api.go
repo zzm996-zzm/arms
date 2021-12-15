@@ -14,6 +14,7 @@ func NewDemoApi() *DemoApi {
 func Register(r *gin.Engine) error {
 	api := NewDemoApi()
 	r.Bind(&demoService.DemoServiceProvider{})
-	r.GET("/demo", api.DemoOrm)
+	r.GET("/demo/orm", api.DemoOrm)
+	r.GET("/demo/cache",api.DemoCache)
 	return nil
 }

@@ -2,7 +2,6 @@ package orm
 
 import (
 	"context"
-	"fmt"
 	"sync"
 	"time"
 
@@ -70,8 +69,6 @@ func (app *Gorm) GetDB(option ...contract.DBOption) (*gorm.DB, error) {
 	if err := configService.Load(app.configPath, config); err != nil {
 		return nil, err
 	}
-
-	fmt.Println("Myconfig: ", config)
 
 	if config.Dsn == "" {
 		dsn, err := config.FormatDsn()

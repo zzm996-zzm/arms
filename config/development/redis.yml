@@ -1,0 +1,6 @@
+host: 127.0.0.1 # ip地址
+port: 6379 # 端口
+db: 0 #db
+timeout: 10s # 连接超时
+readTimeout: 2s # 读超时
+writeTimeout: 2s # 写超时

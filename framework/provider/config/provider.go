@@ -31,8 +31,8 @@ func (provider *ConfigProvider) Params(c framework.Container) []interface{} {
 	envService := c.MustMake(contract.EnvKey).(contract.Env)
 	env := envService.AppEnv()
 	configFolder := appService.ConfigFolder()
-	envFolder := filepath.Join(configFolder, env)
-	return []interface{}{c, envFolder, envService.All()}
+	configEnvFolder := filepath.Join(configFolder, env)
+	return []interface{}{c, configEnvFolder, envService.All()}
 }
 
 // Name / Name define the name for this service

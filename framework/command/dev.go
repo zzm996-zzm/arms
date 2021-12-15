@@ -9,6 +9,7 @@ import (
 	"os"
 	"os/exec"
 	"path/filepath"
+	"strings"
 	"syscall"
 	"time"
 
@@ -356,11 +357,11 @@ func (p *Proxy) monitorBackend() error {
 			fmt.Println("重启服务结束....")
 			t.Stop()
 		case event, ok := <-watcher.Events:
-			// fmt.Println("event:", event.Name, event.Op.String())
+			fmt.Println("event:", event.Name, event.Op.String())
 			if !ok {
 				continue
 			}
-			if event.Op.String() == "WRITE" {
+			if strings.Contains(event.Op.String(),"WRITE"){
 				//如果有文件更新reset 计时器
 				fmt.Println("event:", event.Name, event.Op.String())
 				t.Reset(time.Duration(refreshTime) * time.Second)
