@@ -87,6 +87,8 @@ func NewConfigService(params ...interface{}) (interface{}, error) {
 		for {
 			select {
 			case ev := <-watch.Events:
+				//FIXME:事件过多
+
 				//判断事件发生的类型
 				// Create 创建
 				// Write 写入

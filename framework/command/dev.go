@@ -233,7 +233,6 @@ func (p *Proxy) newProxyReverseProxy(frontend, backend *url.URL) *httputil.Rever
 				return nil
 			},
 			ErrorHandler: func(writer http.ResponseWriter, request *http.Request, err error) {
-				// fmt.Println("errors.Is(err, NotFoundErr)", errors.Is(err, NotFoundErr))
 				if errors.Is(err, NotFoundErr) {
 					httputil.NewSingleHostReverseProxy(frontend).ServeHTTP(writer, request)
 				}
@@ -356,16 +355,21 @@ func (p *Proxy) monitorBackend() error {
 			}
 			fmt.Println("重启服务结束....")
 			t.Stop()
-		case _, ok := <-watcher.Events:
+		case event, ok := <-watcher.Events:
+			// fmt.Println("event:", event.Name, event.Op.String())
 			if !ok {
 				continue
 			}
-			//如果有文件更新reset 计时器
-			t.Reset(time.Duration(refreshTime) * time.Second)
+			if event.Op.String() == "WRITE" {
+				//如果有文件更新reset 计时器
+				fmt.Println("event:", event.Name, event.Op.String())
+				t.Reset(time.Duration(refreshTime) * time.Second)
+			}
 		case err, ok := <-watcher.Errors:
 			if !ok {
 				continue
 			}
+
 			fmt.Println("监听文件夹错误：", err.Error())
 			t.Reset(time.Duration(refreshTime) * time.Second)
 		}

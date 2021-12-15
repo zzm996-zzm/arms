@@ -59,9 +59,9 @@ func (api *DemoApi) DemoOrm(c *gin.Context) {
 	err = db.First(queryUser).Error
 	logger.Info(c, "query user", map[string]interface{}{"err": err, "name": queryUser.Name})
 
-	//删除一条数据
-	// err = db.Delete(queryUser).Error
-	// logger.Info(c, "delete user", map[string]interface{}{"err": err, "id": user.ID})
+	// 删除一条数据
+	err = db.Delete(queryUser).Error
+	logger.Info(c, "delete user", map[string]interface{}{"err": err, "id": user.ID})
 
 	c.JSON(200, "ok")
 
